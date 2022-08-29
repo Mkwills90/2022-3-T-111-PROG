@@ -9,8 +9,8 @@ import math
 
 d = float(input("What is the diameter? "))
 
-r = d/2
-volume_of_sphere = (4/3) * math.pi * (r**3)
-volume_of_half_sphere = volume_of_sphere/2
+r = d / 2
+volume_of_sphere = (4 / 3) * math.pi * (r ** 3)
+volume_of_half_sphere = volume_of_sphere / 2
 
 print("The volume of the half-sphere is", round(volume_of_half_sphere, 2))
