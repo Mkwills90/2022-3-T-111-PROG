@@ -1,6 +1,6 @@
-num1 = int(input('First number: '))
-num2 = int(input('Second number: '))
-num3 = int(input('Third number: '))
+num1 = int(input("First number: "))
+num2 = int(input("Second number: "))
+num3 = int(input("Third number: "))
 
 max_int = num1
 if num2 > max_int:

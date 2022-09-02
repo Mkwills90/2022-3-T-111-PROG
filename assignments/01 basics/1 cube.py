@@ -2,6 +2,6 @@
 
 num_int = int(input("Enter a number: "))
 
-cube = num_int**3
+cube = num_int ** 3
 
 print(num_int, "cubed is", cube)
