@@ -1,0 +1,13 @@
+n = int(input("Input an int: "))
+
+total_sum = 0
+while n > 0:
+    current_last_digit = n % 10
+    total_sum += current_last_digit
+
+    # Now discard the last digit,
+    # so the next-to-last digit becomes the new last digit:
+    remaining_digits = n // 10
+    n = remaining_digits
+
+print(total_sum)
