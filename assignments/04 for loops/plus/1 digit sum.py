@@ -7,7 +7,7 @@ while n > 0:
 
     # Now discard the last digit,
     # so the next-to-last digit becomes the new last digit:
-    remaining_digits = n // 10
-    n = remaining_digits
+    n_with_last_digit_removed = n // 10
+    n = n_with_last_digit_removed
 
 print(total_sum)
