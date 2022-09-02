@@ -9,4 +9,5 @@ for i in range(n):
     usage = int(input("How much data did you use this month?: "))
     mb_allowance -= usage
 
+# Remember to take the upcoming month into account
 print(mb_allowance + mb_per_month)
