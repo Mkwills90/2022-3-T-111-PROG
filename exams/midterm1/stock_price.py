@@ -19,4 +19,4 @@ while price != 0:
 if num_days > 0:
     average = total_price/num_days
     print("Maximum stock price:", max_price)
-    print("Average stock price:", round(average, 2))
+    print("Average stock price:", round(average, DIGITS))
