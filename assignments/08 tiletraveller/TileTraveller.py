@@ -5,46 +5,10 @@ SOUTH = "s"
 WEST = "w"
 
 
-def move(direction, col, row):
-    """Returns updated col, row given the direction."""
-
-    if direction == NORTH:
-        row += 1
-    elif direction == SOUTH:
-        row -= 1
-    elif direction == EAST:
-        col += 1
-    elif direction == WEST:
-        col -= 1
-    return (col, row)
-
-
 def has_won(col, row):
     """Return true if player is in the victory cell."""
 
     return col == 3 and row == 1  # (3,1)
-
-
-def print_directions(directions_str):
-    print("You can travel: ", end="")
-
-    one_done_already = False
-    for ch in directions_str:
-        if one_done_already:
-            print(" or ", end="")
-
-        if ch == NORTH:
-            print("(N)orth", end="")
-        elif ch == EAST:
-            print("(E)ast", end="")
-        elif ch == SOUTH:
-            print("(S)outh", end="")
-        elif ch == WEST:
-            print("(W)est", end="")
-
-        one_done_already = True
-
-    print(".")
 
 
 def find_directions(col, row):
@@ -70,6 +34,28 @@ def find_directions(col, row):
     return valid_directions
 
 
+def print_directions(directions_str):
+    print("You can travel: ", end="")
+
+    one_done_already = False
+    for ch in directions_str:
+        if one_done_already:
+            print(" or ", end="")
+
+        if ch == NORTH:
+            print("(N)orth", end="")
+        elif ch == EAST:
+            print("(E)ast", end="")
+        elif ch == SOUTH:
+            print("(S)outh", end="")
+        elif ch == WEST:
+            print("(W)est", end="")
+
+        one_done_already = True
+
+    print(".")
+
+
 def play_one_move(col, row, valid_directions):
     """Plays one move of the game.
 
@@ -85,6 +71,20 @@ def play_one_move(col, row, valid_directions):
         print("Not a valid direction!")
 
     return col, row
+
+
+def move(direction, col, row):
+    """Returns updated col, row given the direction."""
+
+    if direction == NORTH:
+        row += 1
+    elif direction == SOUTH:
+        row -= 1
+    elif direction == EAST:
+        col += 1
+    elif direction == WEST:
+        col -= 1
+    return (col, row)
 
 
 # The main program starts here
