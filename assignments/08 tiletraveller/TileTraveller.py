@@ -27,10 +27,12 @@ def is_victory(col, row):
 
 def print_directions(directions_str):
     print("You can travel: ", end="")
+
     first = True
     for ch in directions_str:
         if not first:
             print(" or ", end="")
+
         if ch == NORTH:
             print("(N)orth", end="")
         elif ch == EAST:
@@ -39,7 +41,9 @@ def print_directions(directions_str):
             print("(S)outh", end="")
         elif ch == WEST:
             print("(W)est", end="")
+
         first = False
+
     print(".")
 
 
@@ -62,6 +66,7 @@ def find_directions(col, row):
         valid_directions = NORTH + SOUTH
     elif col == 3 and row == 3:  # (3,3)
         valid_directions = SOUTH + WEST
+
     return valid_directions
 
 
@@ -80,6 +85,7 @@ def play_one_move(col, row, valid_directions):
     else:
         col, row = move(direction, col, row)
         victory = is_victory(col, row)
+
     return victory, col, row
 
 
@@ -92,4 +98,5 @@ while not victory:
     valid_directions = find_directions(col, row)
     print_directions(valid_directions)
     victory, col, row = play_one_move(col, row, valid_directions)
+
 print("Victory!")
