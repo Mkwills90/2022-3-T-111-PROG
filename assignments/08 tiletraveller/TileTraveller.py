@@ -76,7 +76,6 @@ def play_one_move(col, row, valid_directions):
     Return whether victory has been obtained, and updated col, row.
     """
 
-    victory = False
     direction = input("Direction: ")
     direction = direction.lower()
 
@@ -84,19 +83,17 @@ def play_one_move(col, row, valid_directions):
         print("Not a valid direction!")
     else:
         col, row = move(direction, col, row)
-        victory = is_victory(col, row)
 
-    return victory, col, row
+    return col, row
 
 
 # The main program starts here
-victory = False
 row = 1
 col = 1
 
-while not victory:
+while not is_victory(col, row):
     valid_directions = find_directions(col, row)
     print_directions(valid_directions)
-    victory, col, row = play_one_move(col, row, valid_directions)
+    col, row = play_one_move(col, row, valid_directions)
 
 print("Victory!")
