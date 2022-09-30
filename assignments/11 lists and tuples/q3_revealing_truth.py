@@ -11,7 +11,7 @@ def get_input() -> List[str]:
     return input("Enter elements of list separated by commas: ").strip().split(",")
 
 
-def list_to_bool_tuple(a_list: List[str]) -> Tuple[bool]:
+def list_to_bool_tuple(a_list: list) -> Tuple[bool]:
     bool_list = []
     for item in a_list:
         bool_item = discover_the_truth(item)
@@ -20,7 +20,7 @@ def list_to_bool_tuple(a_list: List[str]) -> Tuple[bool]:
     return tuple(bool_list)
 
 
-def discover_the_truth(source: str) -> bool:
+def discover_the_truth(source) -> bool:
     try:
         truth = bool(int(source))
     except ValueError:
