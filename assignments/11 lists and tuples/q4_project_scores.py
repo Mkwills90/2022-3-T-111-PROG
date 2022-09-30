@@ -11,7 +11,7 @@ def main():
     else:
         for _ in range(NUMBER_TO_DROP):
             remove_minimum(scores)
-        print(f"Sum of scores ({NUMBER_TO_DROP} lowest removed):", sum(scores))
+        print(f"Sum of scores ({NUMBER_TO_DROP} lowest removed): {sum(scores)}")
 
 
 def read_scores() -> list:
