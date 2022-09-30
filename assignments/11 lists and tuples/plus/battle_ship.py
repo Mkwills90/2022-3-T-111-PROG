@@ -27,7 +27,8 @@ def main() -> None:
 
 def gather_fleet_positions() -> list:
     print(
-        "Specify the location of each ship in your fleet by providing the top/left coordinate and orientation."
+        "Specify the location of each ship in your fleet",
+        "by providing the top/left coordinate and orientation.",
     )
     print("Examples: 'A2 vertical' or 'C3 horizontal'")
     positions = []
@@ -36,6 +37,7 @@ def gather_fleet_positions() -> list:
         coordindate, orientation = location.split()
         occupied_tiles = get_occupied_tiles(coordindate, orientation, size)
         positions.append((ship, occupied_tiles, []))
+
     return positions
 
 
@@ -55,6 +57,7 @@ def something_is_still_afloat(fleet: list) -> bool:
     for ship in fleet:
         if is_afloat(ship):
             return True
+
     return False
 
 
@@ -63,6 +66,7 @@ def is_afloat(ship: tuple) -> bool:
     for tile in occupied_tiles:
         if tile not in hits:
             return True
+
     return False
 
 
@@ -75,6 +79,7 @@ def get_ship_at(coordinate: str, fleet: list):
     for ship in fleet:
         if hit_test(ship, coordinate):
             return ship
+
     return None
 
 
@@ -83,6 +88,7 @@ def hit_test(ship: tuple, coordinate: str) -> bool:
     for tile in occupied_tiles:
         if coordinate == tile:
             return True
+
     return False
 
 
