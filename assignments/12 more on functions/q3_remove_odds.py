@@ -1,3 +1,6 @@
+from typing import List
+
+
 def main():
     a_list = [1, 1, 2, 3, 4, 5]
     print(f"a_list initially: {a_list}")
@@ -11,7 +14,7 @@ def main():
     print(f"c_list after extracting evens: {c_list}")
 
 
-def remove_odds(int_list: list) -> None:
+def remove_odds(int_list: List[int]) -> None:
     """Removes odd integers from int_list."""
 
     # Any of the following works
@@ -25,7 +28,7 @@ def remove_odds(int_list: list) -> None:
     # remove_odds_8(int_list)
 
 
-def remove_odds_1(int_list: list) -> None:
+def remove_odds_1(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Makes a copy first, for reference.
@@ -53,7 +56,7 @@ def remove_odds_1(int_list: list) -> None:
     # That's no good.
 
 
-def make_a_copy(int_list: list) -> list:
+def make_a_copy(int_list: List[int]) -> List[int]:
     """Returns a copy of the given list.
 
     Demonstrates various ways to copy lists.
@@ -89,7 +92,7 @@ def make_a_copy(int_list: list) -> list:
     return a_copy
 
 
-def remove_odds_2(int_list: list) -> None:
+def remove_odds_2(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Iterates backwards over the list, so it can safely modify the list on the fly.
@@ -114,7 +117,7 @@ def remove_odds_2(int_list: list) -> None:
     # and we continue on to the next number to the left.
 
 
-def remove_odds_3(int_list: list) -> None:
+def remove_odds_3(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Takes care not to move on to the next index
@@ -127,7 +130,7 @@ def remove_odds_3(int_list: list) -> None:
             int_list.pop(i)
 
 
-def remove_odds_4(int_list: list) -> None:
+def remove_odds_4(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Takes care not to move on to the next index
@@ -140,7 +143,7 @@ def remove_odds_4(int_list: list) -> None:
             int_list.pop(i)
 
 
-def remove_odds_5(int_list: list) -> None:
+def remove_odds_5(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Takes care not to move on to the next index
@@ -156,7 +159,7 @@ def remove_odds_5(int_list: list) -> None:
             i += 1
 
 
-def remove_odds_6(int_list: list) -> None:
+def remove_odds_6(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Makes a new list with the even numbers only,
@@ -176,7 +179,7 @@ def remove_odds_6(int_list: list) -> None:
         int_list.pop()
 
 
-def remove_odds_7(int_list: list) -> None:
+def remove_odds_7(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Makes a new list with the even numbers only,
@@ -194,7 +197,7 @@ def remove_odds_7(int_list: list) -> None:
         int_list.append(even)
 
 
-def remove_odds_8(int_list: list) -> None:
+def remove_odds_8(int_list: List[int]) -> None:
     """Removes odd integers from int_list.
 
     Makes a new list with the even numbers only,
@@ -207,7 +210,7 @@ def remove_odds_8(int_list: list) -> None:
     int_list[:] = only_evens
 
 
-def extract_evens(int_list: list) -> list:
+def extract_evens(int_list: List[int]) -> List[int]:
     """Returns a new list with only even integers from int_list."""
 
     return [number for number in int_list if number % 2 == 0]
