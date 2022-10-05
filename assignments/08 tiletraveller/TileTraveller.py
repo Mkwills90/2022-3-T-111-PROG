@@ -42,35 +42,35 @@ def play_one_move(location: Tuple[int]) -> Tuple[int]:
     return location
 
 
-def find_directions(location: Tuple[int]) -> list:
+def find_directions(location: Tuple[int]) -> Tuple[str]:
     """Returns valid directions as a string given the supplied location."""
 
     if location == (1, 1):
-        valid_directions = NORTH
+        valid_directions = (NORTH,)
     elif location == (1, 2):
-        valid_directions = NORTH + EAST + SOUTH
+        valid_directions = NORTH, EAST, SOUTH
     elif location == (1, 3):
-        valid_directions = EAST + SOUTH
+        valid_directions = EAST, SOUTH
     elif location == (2, 1):
-        valid_directions = NORTH
+        valid_directions = (NORTH,)
     elif location == (2, 2):
-        valid_directions = SOUTH + WEST
+        valid_directions = SOUTH, WEST
     elif location == (2, 3):
-        valid_directions = EAST + WEST
+        valid_directions = EAST, WEST
     elif location == (3, 2):
-        valid_directions = NORTH + SOUTH
+        valid_directions = NORTH, SOUTH
     elif location == (3, 3):
-        valid_directions = SOUTH + WEST
+        valid_directions = SOUTH, WEST
 
     return valid_directions
 
 
-def get_direction(valid_directions: list) -> str:
+def get_direction(valid_directions: Tuple[str]) -> str:
     print_directions(valid_directions)
     return input("Direction: ").lower()
 
 
-def print_directions(available_directions: list) -> None:
+def print_directions(available_directions: Tuple[str]) -> None:
     print("You can travel: ", end="")
 
     one_done_already = False
