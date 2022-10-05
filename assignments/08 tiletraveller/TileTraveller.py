@@ -68,6 +68,12 @@ def print_directions(available_directions: list) -> None:
     print(".")
 
 
+# Alternatively:
+# def print_directions(available_directions: list) -> None:
+#     options = " or ".join(available_directions)
+#     print(f"You can travel: {options}.")
+
+
 def play_one_move(col, row, valid_directions):
     """Plays one move of the game.
 
