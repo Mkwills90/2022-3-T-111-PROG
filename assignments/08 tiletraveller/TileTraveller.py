@@ -10,9 +10,7 @@ def main():
     col = 1
 
     while not destination_reached(col, row):
-        valid_directions = find_directions(col, row)
-        print_directions(valid_directions)
-        col, row = play_one_move(col, row, valid_directions)
+        col, row = play_one_move(col, row)
 
     print("Victory!")
 
@@ -21,6 +19,23 @@ def destination_reached(col, row):
     """Returns True if player is in the victory cell."""
 
     return col == 3 and row == 1  # (3,1)
+
+
+def play_one_move(col, row):
+    """Plays one move of the game.
+
+    Returns updated col, row.
+    """
+
+    valid_directions = find_directions(col, row)
+    direction = get_direction(valid_directions)
+
+    if direction in valid_directions:
+        col, row = move(direction, col, row)
+    else:
+        print("Not a valid direction!")
+
+    return col, row
 
 
 def find_directions(col, row):
@@ -44,6 +59,11 @@ def find_directions(col, row):
         valid_directions = SOUTH + WEST
 
     return valid_directions
+
+
+def get_direction(valid_directions: list) -> str:
+    print_directions(valid_directions)
+    return input("Direction: ").lower()
 
 
 def print_directions(available_directions: list) -> None:
@@ -72,23 +92,6 @@ def print_directions(available_directions: list) -> None:
 # def print_directions(available_directions: list) -> None:
 #     options = " or ".join(available_directions)
 #     print(f"You can travel: {options}.")
-
-
-def play_one_move(col, row, valid_directions):
-    """Plays one move of the game.
-
-    Returns whether victory has been obtained, and updated col, row.
-    """
-
-    direction = input("Direction: ")
-    direction = direction.lower()
-
-    if direction in valid_directions:
-        col, row = move(direction, col, row)
-    else:
-        print("Not a valid direction!")
-
-    return col, row
 
 
 def move(direction, col, row):
