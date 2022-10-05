@@ -9,7 +9,7 @@ def main():
     row = 1
     col = 1
 
-    while not has_won(col, row):
+    while not destination_reached(col, row):
         valid_directions = find_directions(col, row)
         print_directions(valid_directions)
         col, row = play_one_move(col, row, valid_directions)
@@ -17,7 +17,7 @@ def main():
     print("Victory!")
 
 
-def has_won(col, row):
+def destination_reached(col, row):
     """Returns True if player is in the victory cell."""
 
     return col == 3 and row == 1  # (3,1)
