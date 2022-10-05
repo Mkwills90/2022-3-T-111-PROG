@@ -15,13 +15,13 @@ def main():
     print("Victory!")
 
 
-def destination_reached(col, row):
+def destination_reached(col: int, row: int) -> bool:
     """Returns True if player is in the victory cell."""
 
     return col == 3 and row == 1  # (3,1)
 
 
-def play_one_move(col, row):
+def play_one_move(col: int, row: int) -> tuple:
     """Plays one move of the game.
 
     Returns updated col, row.
@@ -38,7 +38,7 @@ def play_one_move(col, row):
     return col, row
 
 
-def find_directions(col, row):
+def find_directions(col: int, row: int) -> list:
     """Returns valid directions as a string given the supplied location."""
 
     if col == 1 and row == 1:  # (1,1)
@@ -94,7 +94,7 @@ def print_directions(available_directions: list) -> None:
 #     print(f"You can travel: {options}.")
 
 
-def move(direction, col, row):
+def move(direction: str, col: int, row: int) -> tuple:
     """Returns updated col, row given the direction."""
 
     if direction == NORTH:
