@@ -92,12 +92,6 @@ def print_directions(available_directions: list) -> None:
     print(".")
 
 
-# Alternatively:
-# def print_directions(available_directions: list) -> None:
-#     options = " or ".join(available_directions)
-#     print(f"You can travel: {options}.")
-
-
 def move(direction: str, location: Tuple[int]) -> Tuple[int]:
     """Returns updated location given the direction."""
 
