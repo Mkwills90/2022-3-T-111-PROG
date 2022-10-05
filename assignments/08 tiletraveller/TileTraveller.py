@@ -13,16 +13,10 @@ FINAL_DESTINATION = (3, 1)
 
 def main():
     location = STARTING_LOCATION
-    while not destination_reached(location):
+    while location != FINAL_DESTINATION:
         location = play_one_move(location)
 
     print("Victory!")
-
-
-def destination_reached(location: Tuple[int]) -> bool:
-    """Returns True if player is in the victory cell."""
-
-    return location == FINAL_DESTINATION
 
 
 def play_one_move(location: Tuple[int]) -> Tuple[int]:
