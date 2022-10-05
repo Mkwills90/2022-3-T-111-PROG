@@ -5,6 +5,18 @@ SOUTH = "s"
 WEST = "w"
 
 
+def main():
+    row = 1
+    col = 1
+
+    while not has_won(col, row):
+        valid_directions = find_directions(col, row)
+        print_directions(valid_directions)
+        col, row = play_one_move(col, row, valid_directions)
+
+    print("Victory!")
+
+
 def has_won(col, row):
     """Returns True if player is in the victory cell."""
 
@@ -87,13 +99,5 @@ def move(direction, col, row):
     return (col, row)
 
 
-# The main program starts here
-row = 1
-col = 1
-
-while not has_won(col, row):
-    valid_directions = find_directions(col, row)
-    print_directions(valid_directions)
-    col, row = play_one_move(col, row, valid_directions)
-
-print("Victory!")
+if __name__ == "__main__":
+    main()
