@@ -1,61 +1,65 @@
+from typing import Tuple
+
+
 # Constants
 NORTH = "n"
 EAST = "e"
 SOUTH = "s"
 WEST = "w"
 
+STARTING_LOCATION = (1, 1)
+FINAL_DESTINATION = (3, 1)
+
 
 def main():
-    row = 1
-    col = 1
-
-    while not destination_reached(col, row):
-        col, row = play_one_move(col, row)
+    location = STARTING_LOCATION
+    while not destination_reached(location):
+        location = play_one_move(location)
 
     print("Victory!")
 
 
-def destination_reached(col: int, row: int) -> bool:
+def destination_reached(location: Tuple[int]) -> bool:
     """Returns True if player is in the victory cell."""
 
-    return col == 3 and row == 1  # (3,1)
+    return location == FINAL_DESTINATION
 
 
-def play_one_move(col: int, row: int) -> tuple:
+def play_one_move(location: Tuple[int]) -> Tuple[int]:
     """Plays one move of the game.
 
-    Returns updated col, row.
+    Returns updated location.
     """
 
-    valid_directions = find_directions(col, row)
+    valid_directions = find_directions(location)
     direction = get_direction(valid_directions)
 
     if direction in valid_directions:
-        col, row = move(direction, col, row)
+        location = move(direction, location)
     else:
         print("Not a valid direction!")
 
-    return col, row
+    return location
 
 
-def find_directions(col: int, row: int) -> list:
+def find_directions(location: Tuple[int]) -> list:
     """Returns valid directions as a string given the supplied location."""
 
-    if col == 1 and row == 1:  # (1,1)
+    if location == (1, 1):
         valid_directions = NORTH
-    elif col == 1 and row == 2:  # (1,2)
+    elif location == (1, 2):
         valid_directions = NORTH + EAST + SOUTH
-    elif col == 1 and row == 3:  # (1,3)
+    elif location == (1, 3):
         valid_directions = EAST + SOUTH
-    elif col == 2 and row == 1:  # (2,1)
+    elif location == (2, 1):
         valid_directions = NORTH
-    elif col == 2 and row == 2:  # (2,2)
+    elif location == (2, 2):
         valid_directions = SOUTH + WEST
-    elif col == 2 and row == 3:  # (2,3)
+    elif location == (2, 3):
         valid_directions = EAST + WEST
-    elif col == 3 and row == 2:  # (3,2)
+    elif location == (3, 2):
         valid_directions = NORTH + SOUTH
-    elif col == 3 and row == 3:  # (3,3)
+    elif location == (3, 3):
         valid_directions = SOUTH + WEST
 
     return valid_directions
@@ -94,18 +98,21 @@ def print_directions(available_directions: list) -> None:
 #     print(f"You can travel: {options}.")
 
 
-def move(direction: str, col: int, row: int) -> tuple:
-    """Returns updated col, row given the direction."""
+def move(direction: str, location: Tuple[int]) -> Tuple[int]:
+    """Returns updated location given the direction."""
+
+    x, y = location
 
     if direction == NORTH:
-        row += 1
+        y += 1
     elif direction == SOUTH:
-        row -= 1
+        y -= 1
     elif direction == EAST:
-        col += 1
+        x += 1
     elif direction == WEST:
-        col -= 1
-    return (col, row)
+        x -= 1
+
+    return x, y
 
 
 if __name__ == "__main__":
