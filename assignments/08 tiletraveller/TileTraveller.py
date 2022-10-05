@@ -6,7 +6,7 @@ WEST = "w"
 
 
 def has_won(col, row):
-    """Return true if player is in the victory cell."""
+    """Returns True if player is in the victory cell."""
 
     return col == 3 and row == 1  # (3,1)
 
@@ -59,7 +59,7 @@ def print_directions(directions_str):
 def play_one_move(col, row, valid_directions):
     """Plays one move of the game.
 
-    Return whether victory has been obtained, and updated col, row.
+    Returns whether victory has been obtained, and updated col, row.
     """
 
     direction = input("Direction: ")
