@@ -46,21 +46,21 @@ def find_directions(col, row):
     return valid_directions
 
 
-def print_directions(directions_str):
+def print_directions(available_directions: list) -> None:
     print("You can travel: ", end="")
 
     one_done_already = False
-    for ch in directions_str:
+    for direction in available_directions:
         if one_done_already:
             print(" or ", end="")
 
-        if ch == NORTH:
+        if direction == NORTH:
             print("(N)orth", end="")
-        elif ch == EAST:
+        elif direction == EAST:
             print("(E)ast", end="")
-        elif ch == SOUTH:
+        elif direction == SOUTH:
             print("(S)outh", end="")
-        elif ch == WEST:
+        elif direction == WEST:
             print("(W)est", end="")
 
         one_done_already = True
