@@ -9,7 +9,7 @@ DOWN = 'd'
 QUIT = 'q'
 
 def main():
-    """The main program explains itself!"""
+    """Initializes the grid and runs the main loop."""
 
     grid = initialize_grid()
     row, col = (0,0)
