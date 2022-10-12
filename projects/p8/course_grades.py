@@ -5,14 +5,12 @@ FILE_NOT_FOUND_MESSAGE = "File {} not found"
 def main():
     """Reads the parts file and processes students grades."""
 
-    parts_file_object, file_name = get_file_object("Enter filename for parts: ")
+    parts_file_object = get_file_object("Enter filename for parts: ")
     if parts_file_object is not None:
         parts_list = get_parts(parts_file_object)
         parts_file_object.close()
         print(parts_list)
         process_student_grades(parts_list)
-    else:
-        print(FILE_NOT_FOUND_MESSAGE.format(file_name))
 
 
 def get_file_object(prompt):
@@ -22,7 +20,11 @@ def get_file_object(prompt):
 
     file_name = input(prompt)
     file_object = open_file(file_name)
-    return file_object, file_name
+
+    if file_object is None:
+        print(FILE_NOT_FOUND_MESSAGE.format(file_name))
+
+    return file_object
 
 
 def open_file(filename):
@@ -63,7 +65,7 @@ def convert_to_floats(str_list):
 def process_student_grades(parts_list):
     """Processes student grades and prints out the result."""
 
-    grade_file_object, file_name = get_file_object("Enter filename for grades: ")
+    grade_file_object = get_file_object("Enter filename for grades: ")
     if grade_file_object is not None:
         grades_list = get_grades(grade_file_object)
         grade_file_object.close()
@@ -72,8 +74,6 @@ def process_student_grades(parts_list):
         add_final_grades(parts_list, grades_list)
         print(grades_list)
         print_all_results(parts_list, grades_list)
-    else:
-        print(FILE_NOT_FOUND_MESSAGE.format(file_name))
 
 
 def get_grades(file_object):
