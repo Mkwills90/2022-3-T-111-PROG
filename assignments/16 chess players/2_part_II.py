@@ -13,15 +13,21 @@ def main():
         print(f"File {filename} not found!")
         return
 
-    players_by_name = create_players_dict(file_stream)
-    file_stream.close()  # Remember to close the file.
+    with file_stream:  # This takes care of closing the file for us.
+        players_by_name = create_players_dict(file_stream)
 
-    country_lists = group_by_countries(players_by_name)
+    country_lists = group_by(players_by_name, COUNTRY)
     print_header("Players by country:")
     print_sorted(country_lists, players_by_name)
 
+    print()
 
-def open_file(filename: str):
+    year_lists = group_by(players_by_name, BIRTHYEAR)
+    print_header("Players by birth year:")
+    print_sorted(year_lists, players_by_name)
+
+
+def open_file(filename):
     """Opens the file with the given file name.
 
     Returns the corresponding file stream, or None if the file cannot be opened.
@@ -42,7 +48,7 @@ def create_players_dict(file_stream) -> dict:
     """
 
     players_info: dict = {}
-    for line in file_stream:  # process each line
+    for line in file_stream:
         rank, name, country, rating, birth_year = line.split(";")
 
         # The name is one field separated by ","
@@ -59,23 +65,23 @@ def create_players_dict(file_stream) -> dict:
     return players_info
 
 
-def group_by_countries(players_info: dict) -> dict:
-    """Uses a players dictionary to create a countries dictionary.
+def group_by(players_info: dict, attribute_key: int) -> dict:
+    """Uses a players dictionary to create a new dictionary.
 
-    A key in the dictionary is a country,
+    A key in the new dictionary is a given attribute of the player,
     and the corresponding value is a list of player names.
     """
 
-    country_lists: dict = {}
+    organized_by_attribute: dict = {}
     for chess_player, chess_player_data in players_info.items():
-        country = chess_player_data[COUNTRY]
+        attribute = chess_player_data[attribute_key]
 
-        if country not in country_lists:
-            country_lists[country] = []
+        if attribute not in organized_by_attribute:
+            organized_by_attribute[attribute] = []
 
-        country_lists[country].append(chess_player)
+        organized_by_attribute[attribute].append(chess_player)
 
-    return country_lists
+    return organized_by_attribute
 
 
 def print_header(header: str) -> None:
@@ -86,13 +92,13 @@ def print_header(header: str) -> None:
     print(dashes)
 
 
-def print_sorted(country_lists: dict, players_info: dict) -> None:
-    """Prints information sorted by countries."""
+def print_sorted(organized_by_attribute: dict, players_info: dict) -> None:
+    """Prints information sorted by the chosen attribute."""
 
-    sorted_by_countries_first_and_then_names = sorted(country_lists.items())
-    for country, players in sorted_by_countries_first_and_then_names:
+    sorted_by_attribute_first_and_then_names = sorted(organized_by_attribute.items())
+    for attribute, players in sorted_by_attribute_first_and_then_names:
         average_rating = get_average_rating(players, players_info)
-        print(f"{country} ({len(players)}) ({average_rating:.1f}):")
+        print(f"{attribute} ({len(players)}) ({average_rating:.1f}):")
 
         for player_name in players:
             rating = players_info[player_name][RATING]
