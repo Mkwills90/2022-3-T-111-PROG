@@ -33,11 +33,11 @@ class Mastermind:
         guess = ""
         while not self.__is_game_over(code, guess, guesses_left):
             guess = self.__ask_for_guess(guesses_left)
-            if guess == code:
-                self.__show_victory_message()
-            else:
+            if guess != code:
                 self.__show_feedback(guess, code)
                 guesses_left -= 1
+            else:
+                self.__show_victory_message()
         if guesses_left == 0:
             self.__show_defeat_message(code)
 
@@ -66,11 +66,33 @@ class Mastermind:
             "------------------------    The game starts now    -----------------------------"
         )
 
-    def __show_victory_message(self) -> None:
-        print("Congratulations, you have guessed the code!")
+    def __generate_random_code(self) -> str:
+        return "".join(random.choices(self.COLOR_LETTERS, k=4))
 
-    def __show_defeat_message(self, code: str) -> None:
-        print(f"You failed to guess {code}. Game over :(")
+    def __is_game_over(self, code: str, guess: str, guesses_left) -> bool:
+        return guesses_left == 0 or code == guess
+
+    def __ask_for_guess(self, guesses_left: int) -> str:
+        guess = (
+            input(f"You have {guesses_left} guesses left. What's your guess? ")
+            .lower()
+            .strip()
+        )
+        if not self.__is_valid_guess(guess):
+            print(
+                "That's not a valid guess. Please enter four letters from an alphabet of",
+                self.COLOR_LETTERS,
+            )
+            guess = self.__ask_for_guess(guesses_left)
+        return guess
+
+    def __is_valid_guess(self, guess: str) -> bool:
+        if len(guess) != 4:
+            return False
+        for letter in guess:
+            if letter not in self.COLOR_LETTERS:
+                return False
+        return True
 
     def __show_feedback(self, guess: str, code: str) -> None:
         unmatched_in_guess, unmatched_in_code = self.__get_unmatched_elements(
@@ -105,33 +127,11 @@ class Mastermind:
                 unmatched_in_code.append(code_element)
         return unmatched_in_guess, unmatched_in_code
 
-    def __generate_random_code(self) -> str:
-        return "".join(random.choices(self.COLOR_LETTERS, k=4))
+    def __show_victory_message(self) -> None:
+        print("Congratulations, you have guessed the code!")
 
-    def __is_game_over(self, code: str, guess: str, guesses_left) -> bool:
-        return guesses_left == 0 or code == guess
-
-    def __ask_for_guess(self, guesses_left: int) -> str:
-        guess = (
-            input(f"You have {guesses_left} guesses left. What's your guess? ")
-            .lower()
-            .strip()
-        )
-        if not self.__is_valid_guess(guess):
-            print(
-                "That's not a valid guess. Please enter four letters from an alphabet of",
-                self.COLOR_LETTERS,
-            )
-            guess = self.__ask_for_guess(guesses_left)
-        return guess
-
-    def __is_valid_guess(self, guess: str) -> bool:
-        if len(guess) != 4:
-            return False
-        for letter in guess:
-            if letter not in self.COLOR_LETTERS:
-                return False
-        return True
+    def __show_defeat_message(self, code: str) -> None:
+        print(f"You failed to guess {code}. Game over :(")
 
 
 if __name__ == "__main__":
