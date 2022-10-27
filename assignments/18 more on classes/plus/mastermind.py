@@ -5,10 +5,13 @@ from typing import List, Optional, Tuple
 
 def main():
     game = Mastermind(random_seed=1337)
-    play_again = "y"
-    while play_again == "y":
+    game.play()
+    while play_again():
         game.play()
-        play_again = input("Would you like to play again (y/n)? ").lower()
+
+
+def play_again() -> bool:
+    return input("Would you like to play again (y/n)? ").lower() == "y"
 
 
 class Mastermind:
