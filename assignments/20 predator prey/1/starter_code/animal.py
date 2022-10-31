@@ -6,13 +6,12 @@ class Animal:
     breed_time = 10  # class varible. Not really used because the subclasses have their own breed times
 
     @classmethod
-    def set_breed_time(
-        cls, breed_time
-    ):  # A class method for setting the starting breed time for all the instances
+    def set_breed_time(cls, breed_time):
+        """A class method for setting the starting breed time for all the instances."""
         cls.breed_time = breed_time
 
     def __init__(self, island, x=0, y=0, name="A"):
-        """Initializes the animal and its position"""
+        """Initializes the animal and its position."""
         # Variables starting with a single underscore are 'protected', accessible in subclasses
         # Variables starting with two underscores are 'private', not accessible outside the class
         self._island = island
@@ -26,9 +25,14 @@ class Animal:
         return self.__name
 
     def _check_grid_for_neighbor(self, type_looking_for):
-        """Look in the 8 directions from the animals' location and returns the first
+        """Checks if the animal has a neighbor of the specified type.
+
+        Looks in the 8 directions from the animals' location and returns the first
         neighbor location that presently has an object of the specified type.
-        Returns NOT_FOUND if no such location exists"""
+
+        Returns NOT_FOUND if no such location exists.
+        """
+
         offset = [(-1, 1), (0, 1), (1, 1), (-1, 0), (1, 0), (-1, -1), (0, -1), (1, -1)]
         result = Animal.NOT_FOUND
 
@@ -62,8 +66,12 @@ class Animal:
                 self._moved = True  # Now it has moved
 
     def breed(self):
-        """Breed a new Animal.  If there is room in one of the neigboring locations,
-        place the new animal there."""
+        """Breed a new Animal.
+
+        If there is room in one of the neigboring locations,
+        place the new animal there.
+        """
+
         if self._breed_clock <= 0:
             location = self._check_grid_for_neighbor(type(Island.UNOCCUPIED))
             if location != Animal.NOT_FOUND:

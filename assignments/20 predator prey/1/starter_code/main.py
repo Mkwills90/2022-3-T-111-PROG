@@ -6,22 +6,6 @@ from prey import Prey
 from predator import Predator
 
 
-def put_animals_at_random(island, animal_type, animal_count):
-    """Puts animal_count instances of animal_type randomly on the island"""
-    count = 0
-    size = island.size()
-
-    while count < animal_count:
-        x = random.randint(0, size - 1)
-        y = random.randint(0, size - 1)
-        if island.animal(x, y) == Island.UNOCCUPIED:
-            new_animal = animal_type(
-                island, x, y
-            )  # calling the constructor for the specific animal
-            island.register(new_animal)
-            count += 1
-
-
 def main(
     predator_breed_time=6,
     predator_starve_time=3,
@@ -60,6 +44,22 @@ def main(
 
         isle.clear_all_moved_flags()
         print(isle)
+
+
+def put_animals_at_random(island, animal_type, animal_count):
+    """Puts animal_count instances of animal_type randomly on the island"""
+    count = 0
+    size = island.size()
+
+    while count < animal_count:
+        x = random.randint(0, size - 1)
+        y = random.randint(0, size - 1)
+        if island.animal(x, y) == Island.UNOCCUPIED:
+            new_animal = animal_type(
+                island, x, y
+            )  # calling the constructor for the specific animal
+            island.register(new_animal)
+            count += 1
 
 
 if __name__ == "__main__":

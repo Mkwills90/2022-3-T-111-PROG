@@ -26,11 +26,11 @@ class Island:
         return result_str
 
     def inside(self, x, y):
-        """Returns True if the given coordinates are inside the island, else False"""
+        """Returns True if the given coordinates are inside the island, else False."""
         return 0 <= x < self.__grid_size and 0 <= y < self.__grid_size
 
     def animal(self, x, y):
-        """Returns the animal at location (x,y)"""
+        """Returns the animal at location (x,y)."""
         if self.inside(x, y):
             return self.__grid[x][y]
         else:
@@ -40,17 +40,17 @@ class Island:
         return self.__grid_size
 
     def register(self, animal):
-        """Register animal in the island"""
+        """Register animal in the island."""
         x, y = animal.position()  # a tuple (x,y)
         self.__grid[x][y] = animal
 
     def remove(self, animal):
-        """Removes the animal from the island"""
+        """Removes the animal from the island."""
         x, y = animal.position()  # a tuple (x,y)
         self.__grid[x][y] = Island.UNOCCUPIED
 
     def clear_all_moved_flags(self):
-        """Clear all the moved flags of all the instances on the island"""
+        """Clear all the moved flags of all the instances on the island."""
         for x in range(self.__grid_size):
             for y in range(self.__grid_size):
                 animal = self.__grid[x][y]
