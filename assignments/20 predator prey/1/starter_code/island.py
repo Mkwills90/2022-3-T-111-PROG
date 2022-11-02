@@ -5,7 +5,7 @@ class Island:
     OUTSIDE = -1
 
     def __init__(self, n):
-        """Initializes all cells in an n-by-n grid to UNOCCUPIED"""
+        """Initializes all cells in an n-by-n grid to UNOCCUPIED."""
         self.__grid_size = n
         self.__grid = []
         for _ in range(n):

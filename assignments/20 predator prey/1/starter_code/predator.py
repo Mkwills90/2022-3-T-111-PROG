@@ -18,8 +18,8 @@ class Predator(Animal):
     def eat(self):
         """Predator looks for a Prey.
 
-        If found, removes Prey, moves to that location,
-        updates the starve clock, but only if it has not already moved during the clock tick.
+        If found, removes Prey, moves to that location and updates the starve clock,
+        but only if it has not already moved during the clock tick.
         """
 
         if not self._moved:

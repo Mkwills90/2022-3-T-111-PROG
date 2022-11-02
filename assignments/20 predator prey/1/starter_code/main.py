@@ -15,7 +15,7 @@ def main(
     size=10,
     ticks=10,
 ):
-    """Initialization of the simulation"""
+    """Initialization of the simulation."""
 
     # Initialize class variables
     Predator.set_breed_time(predator_breed_time)
@@ -47,7 +47,8 @@ def main(
 
 
 def put_animals_at_random(island, animal_type, animal_count):
-    """Puts animal_count instances of animal_type randomly on the island"""
+    """Puts animal_count instances of animal_type randomly on the island."""
+
     count = 0
     size = island.size()
 
